@@ -13,6 +13,10 @@
     session_start();
     include('connection.php');
 
+    if (isset($_SESSION['username'])) {
+        header("location:admin.php");
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['user'];
 

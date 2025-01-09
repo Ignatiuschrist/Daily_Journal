@@ -18,7 +18,7 @@ include "connection.php";
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">My Journal</a>
+                <a class="navbar-brand" href="index.php">My Journal</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,7 +40,7 @@ include "connection.php";
                             <a class="nav-link" href="#profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php">logout</a>
+                            <a class="nav-link" href="login.php">login</a>
                         </li>
                     </ul>
                 </div>
@@ -120,7 +120,7 @@ include "connection.php";
         <!-- article begin -->
         <section id="article" class="text-center p-5">
             <div class="container">
-                <h1 class="fw-bold display-4 pb-3">article</h1>
+                <h1 class="fw-bold display-4 pb-3">Article</h1>
                 <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                     <?php
                     $sql = "SELECT * FROM article ORDER BY tanggal DESC";
@@ -157,14 +157,27 @@ include "connection.php";
                 <h1 class="text-center mb-4">Gallery</h1>
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="image/Wallpaper 1.jpg" class="d-block w-100" height="500" alt="Wallpaper 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="image/Wallpaper 2.jpg" class="d-block w-100" height="500" alt="Wallpaper 2">
-                        </div>
+                        <?php
+                        // Menarik data dari database untuk gallery
+                        $sql = "SELECT * FROM gallery ORDER BY tanggal DESC";
+                        $hasil = $conn->query($sql);
+
+                        // Menginisialisasi flag untuk menentukan item pertama
+                        $activeClass = 'active';
+
+                        // Perulangan untuk menampilkan gambar-gambar
+                        while ($row = $hasil->fetch_assoc()) {
+                        ?>
+                            <div class="carousel-item <?= $activeClass ?>">
+                                <img src="image/<?= $row['gambar'] ?>" class="d-block w-100" height="500" alt="..." />
+                            </div>
+                        <?php
+                            // Menghapus class 'active' setelah item pertama
+                            $activeClass = '';
+                        }
+                        ?>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <button class=" carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
@@ -175,6 +188,7 @@ include "connection.php";
                 </div>
             </div>
         </section>
+
 
         <section id="schedule" class="py-5">
             <div class="container">
