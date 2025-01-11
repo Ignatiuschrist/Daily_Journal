@@ -16,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My Daily Journal | Admin</title>
-    <link rel="icon" href="img/logo.png" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
@@ -52,7 +51,7 @@ if (!isset($_SESSION['username'])) {
     <!-- nav begin -->
     <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top bg-secondary-subtle">
         <div class="container">
-            <a class="navbar-brand" target="_blank" href=".">My Daily Journal</a>
+            <a class="navbar-brand">My Journal</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -76,6 +75,9 @@ if (!isset($_SESSION['username'])) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin.php?page=user">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php?page=schedule">Schedule</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,11 +112,11 @@ if (!isset($_SESSION['username'])) {
     </section>
     <!-- content end -->
     <!-- footer begin -->
-    <footer class="text-center p-5 bg-secondary-subtle">
+    <footer class="text-center p-3 bg-secondary-subtle">
         <div>
-            <a href="https://www.instagram.com/udinusofficial"><i class="bi bi-instagram h2 p-2 text-dark"></i></a>
+            <a href="https://www.instagram.com/ignatiuschristabel_/"><i class="bi bi-instagram h2 p-2 text-dark"></i></a>
             <a href="https://twitter.com/udinusofficial"><i class="bi bi-twitter h2 p-2 text-dark"></i></a>
-            <a href="https://wa.me/+62812685577"><i class="bi bi-whatsapp h2 p-2 text-dark"></i></a>
+            <a href="https://wa.me/qr/UCNGPGDGDDFPH1"><i class="bi bi-whatsapp h2 p-2 text-dark"></i></a>
         </div>
         <div>Ignatius Christabel &copy; 2024</div>
     </footer>
@@ -122,7 +124,8 @@ if (!isset($_SESSION['username'])) {
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

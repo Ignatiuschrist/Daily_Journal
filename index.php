@@ -8,47 +8,80 @@ include "connection.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Daily Journal</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            margin-bottom: 100px;
+            /* Margin bottom by footer height */
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            /* Set the fixed height of the footer here */
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.php">My Journal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#hero">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#article">Article</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#gallery">Gallery</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#schedule">Schedule</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#profile">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">login</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top bg-secondary-subtle">
+        <div class="container">
+            <a class="navbar-brand">My Journal</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-dark">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#article">Article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="login.php">login</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <section id="hero" class="text-sm-start p-0">
-            <div class="container-fluid bg-secondary-subtle p-3">
+
+    <div class="container-fluid">
+        <section id="hero" class="text-sm-start p-5">
+            <div class="container-fluid bg-light p-3 rounded-4">
                 <div class="row align-items-center p-2 mx-3 flex-sm-row-reverse">
                     <div class="col-12 col-sm-6 text-center">
                         <img src="./image/bird-thumbnail.jpg" class="img-fluid py-4" width="300" alt="hero-image">
@@ -61,67 +94,11 @@ include "connection.php";
             </div>
         </section>
 
-        <!-- <section id="article" class="py-5">
-            <div class="container">
-                <h1 class="text-center mb-4">Article</h1>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="image/dataran-tinggi-dieng-wonosobo-1.png" class="card-img-top" alt="Dataran Tinggi Dieng">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Dataran Tinggi Dieng</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <small class="text-body-secondary">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="image/fe59a84551a18e54f4cba99331e890df-1.png" class="card-img-top" alt="Card title">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <small class="text-body-secondary">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="image/headerborobudur-1.png" class="card-img-top" alt="Candi Borobudur">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Candi Borobudur</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <small class="text-body-secondary">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="image/sam-poo-kong-604391744-1.png" class="card-img-top" alt="Sam-Poo-Kong">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Sam-Poo-Kong</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <small class="text-body-secondary">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
         <!-- article begin -->
         <section id="article" class="text-center p-5">
             <div class="container">
                 <h1 class="fw-bold display-4 pb-3">Article</h1>
-                <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
                     <?php
                     $sql = "SELECT * FROM article ORDER BY tanggal DESC";
                     $hasil = $conn->query($sql);
@@ -129,7 +106,7 @@ include "connection.php";
                     while ($row = $hasil->fetch_assoc()) {
                     ?>
                         <div class="col">
-                            <div class="card h-100">
+                            <div class="card h-100 rounded-5">
                                 <img src="image/<?= $row["gambar"] ?>" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $row["judul"] ?></h5>
@@ -169,7 +146,7 @@ include "connection.php";
                         while ($row = $hasil->fetch_assoc()) {
                         ?>
                             <div class="carousel-item <?= $activeClass ?>">
-                                <img src="image/<?= $row['gambar'] ?>" class="d-block w-100" height="500" alt="..." />
+                                <img src="image/<?= $row['gambar'] ?>" class="d-block w-100 rounded-3" height="500" alt="..." />
                             </div>
                         <?php
                             // Menghapus class 'active' setelah item pertama
@@ -194,132 +171,69 @@ include "connection.php";
             <div class="container">
                 <h1 class="text-center mb-4">Schedule</h1>
                 <div class="row row-gap-4 text-center">
-                    <!-- Monday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Senin</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    09:00-10:00 <br>
-                                    Basis Data <br>
-                                    Ruang H.3.1 <br><br>
-                                    10:00-11:00 <br>
-                                    Algoritma <br>
-                                    Ruang H.3.2
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tuesday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Selasa</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    09:00-10:00 <br>
-                                    Struktur Data <br>
-                                    Ruang H.3.1 <br><br>
-                                    10:00-11:00 <br>
-                                    Jaringan Komputer <br>
-                                    Ruang H.3.3
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Wednesday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Rabu</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    08:00-09:00 <br>
-                                    Sistem Operasi <br>
-                                    Ruang H.3.4 <br><br>
-                                    10:00-11:00 <br>
-                                    Pemrograman <br>
-                                    Ruang H.3.5
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Thursday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Kamis</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    09:00-10:00 <br>
-                                    Statistik <br>
-                                    Ruang H.3.1 <br><br>
-                                    11:00-12:00 <br>
-                                    Manajemen Proyek <br>
-                                    Ruang H.3.2
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Friday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Jumat</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    07:00-08:00 <br>
-                                    Basis Data <br>
-                                    Ruang H.3.1 <br><br>
-                                    09:00-10:00 <br>
-                                    Pemrograman Berbasis Web <br>
-                                    Ruang H.3.3
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Saturday -->
-                    <div class="col-md-4">
-                        <div class="card text-bg-light mb-3">
-                            <div class="card-header">Sabtu</div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    10:00-11:00 <br>
-                                    Analisis Data <br>
-                                    Ruang H.3.2
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    include 'connection.php';
+                    $query = "SELECT * FROM schedule ORDER BY id ASC";
+                    $result = $conn->query($query);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="col-md-4">';
+                            echo '<div class="card text-bg-light mb-3">';
+                            echo '<div class="card-body">';
+                            echo '<h2 class="card-text">' . htmlspecialchars($row['hari']) . '</h2>';
+                            echo '<p class="card-text">' . htmlspecialchars($row['kegiatan']) . '</p>';
+                            echo '<p class="card-text">' . htmlspecialchars($row['deskripsi']) . '</p>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p class="text-center">Tidak ada jadwal tersedia.</p>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
 
-
-        <section id="profile">
+        <section id="profile" class="py-5">
             <div class="container">
-                <h1 class="text-center mb-4">Profile</h1>
-                <div class="container-fluid bg-secondary-subtle p-3">
-                    <div class="row align-items-center p-2 mx-3">
-                        <div class="col-12 col-sm-6 text-center">
-                            <img src="./image/bird-thumbnail.jpg" class="img-fluid py-4 img-rounded-4" width="300" alt="hero-image">
+                <h1 class="text-center mb-5">Profile</h1>
+                <div class="container-fluid bg-secondary-subtle shadow-sm rounded-4 p-4">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-5 text-center">
+                            <img src="./image/20191128_183019.jpg" class="img-fluid border border-4 rounded-4" width="250" alt="Profile Image">
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <h1 class="fw-bold display-4">Ignatius Christabel</h1>
-                            <p class="lead display-6">----</p>
+                        <div class="col-12 col-md-7">
+                            <h2 class="fw-bold display-5 mb-3">Ignatius Christabel</h2>
+                            <p class="lead mb-4 text-secondary">A11.2020.13066</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-envelope me-2 text-primary"></i> ignatiuschrist134@gmail.com</li>
+                                <li><i class="bi bi-phone me-2 text-primary"></i> +6285602495944</li>
+                                <li><i class="bi bi-geo-alt me-2 text-primary"></i> Semarang, Indonesia</li>
+                            </ul>
+                            <div class="mt-4">
+                                <a href="https://github.com/ignatiuschrist" class="btn btn-outline-secondary"><i class="bi bi-github"></i> GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <footer class="text-center py-4">
-            <div class="mb-3">
-                <a href="https://www.instagram.com/ignatiuschristabel_/" class="bi bi-instagram fs-3 text-dark me-3"></a>
-                <a href="#" class="bi bi-twitter fs-3 text-dark me-3"></a>
-                <a href="#" class="bi bi-whatsapp fs-3 text-dark"></a>
-            </div>
-            <div>&copy; ignatiuschristabel_ 2024</div>
-        </footer>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <footer class="text-center p-3 bg-secondary-subtle">
+        <div>
+            <a href="https://www.instagram.com/ignatiuschristabel_/"><i class="bi bi-instagram h2 p-2 text-dark"></i></a>
+            <a href="https://twitter.com/udinusofficial"><i class="bi bi-twitter h2 p-2 text-dark"></i></a>
+            <a href="https://wa.me/qr/UCNGPGDGDDFPH1"><i class="bi bi-whatsapp h2 p-2 text-dark"></i></a>
+        </div>
+        <div>Ignatius Christabel &copy; 2024</div>
+    </footer>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

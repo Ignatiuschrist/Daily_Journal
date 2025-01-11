@@ -1,8 +1,8 @@
-<table class="table table-hover">
+<table class="table table-hover" style="text-align: center;">
     <thead class="table-dark">
         <tr>
-            <th class="w-20">No</th>
-            <th class="w-50">Gambar</th>
+            <th class="w-40">No</th>
+            <th class="w-30">Kegiatan</th>
             <th class="w-30">Aksi</th>
         </tr>
     </thead>
@@ -15,34 +15,20 @@
         $limit_start = ($hlm - 1) * $limit;
         $no = $limit_start + 1;
 
-        $sql = "SELECT * FROM gallery ORDER BY id DESC LIMIT $limit_start, $limit";
+        $sql = "SELECT * FROM schedule ORDER BY kegiatan DESC LIMIT $limit_start, $limit";
         $hasil = $conn->query($sql);
 
         while ($row = $hasil->fetch_assoc()) {
         ?>
             <tr>
-                <td style="display: grid; grid-template-columns: 30px auto; gap: 15px; height: 200px">
-                    <span><?= $no++ ?></span>
-                    <div>
-                        <span>pada: <?= $row["tanggal"] ?></span><br>
-                        <span>oleh: <?= $row["username"] ?></span>
-                    </div>
+                <td><?= $no++ ?></td>
+                <td>
+                    <strong><?= $row["hari"] ?></strong>
+                    <br><?= $row["kegiatan"] ?>
+                    <br><?= $row["deskripsi"] ?>
                 </td>
                 <td>
-                    <?php
-                    if ($row["gambar"] != '') {
-                        if (file_exists('image/' . $row["gambar"] . '')) {
-                    ?>
-                            <img src="image/<?= $row["gambar"] ?>" width="400" height="150">
-                    <?php
-                        } else {
-                            echo "Gambar tidak ditemukan.";
-                        }
-                    }
-                    ?>
-                </td>
-                <td>
-                    <!-- Tombol aksi edit dan hapus -->
+                    <!-- Tombol untuk aksi update dan delete -->
                     <a href="#" title="edit" class="badge rounded-pill text-bg-success" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row["id"] ?>"><i class="bi bi-pencil"></i></a>
                     <a href="#" title="delete" class="badge rounded-pill text-bg-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $row["id"] ?>"><i class="bi bi-x-circle"></i></a>
 
@@ -51,20 +37,29 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Gambar</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Schedule</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form method="post" action="" enctype="multipart/form-data">
                                     <div class="modal-body">
-                                        <input type="hidden" name="id" value="<?= $row["id"] ?>">
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput2" class="form-label">Ganti Gambar</label>
-                                            <input type="file" class="form-control" name="gambar">
+                                            <label for="formGroupExampleInput" class="form-label">Hari</label>
+                                            <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                            <input type="text" class="form-control" name="hari" value="<?= $row["hari"] ?>" required>
                                         </div>
+                                    </div>
+                                    <div class="modal-body">
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput3" class="form-label">Gambar Lama</label>
-                                            <br><img src="image/<?= $row["gambar"] ?>" width="100">
-                                            <input type="hidden" name="gambar_lama" value="<?= $row["gambar"] ?>">
+                                            <label for="formGroupExampleInput" class="form-label">Kegiatan</label>
+                                            <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                            <input type="text" class="form-control" name="kegiatan" value="<?= $row["kegiatan"] ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput" class="form-label">Deskripsi</label>
+                                            <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                            <input type="text" class="form-control" name="deskripsi" value="<?= $row["deskripsi"] ?>" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -81,17 +76,18 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Hapus Gambar</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Hapus Jadwal</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form method="post" action="">
                                     <div class="modal-body">
-                                        <p>Yakin akan menghapus gambar?</p>
-                                        <input type="hidden" name="id" value="<?= $row["id"] ?>">
-                                        <input type="hidden" name="gambar" value="<?= $row["gambar"] ?>">
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput" class="form-label">Yakin akan menghapus jadwal "<strong><?= $row["judul"] ?></strong>"?</label>
+                                            <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">batal</button>
                                         <input type="submit" value="hapus" name="hapus" class="btn btn-primary">
                                     </div>
                                 </form>
@@ -106,14 +102,12 @@
     </tbody>
 </table>
 
-
-
 <?php
-$sql1 = "SELECT * FROM gallery";
+$sql1 = "SELECT * FROM schedule";
 $hasil1 = $conn->query($sql1);
 $total_records = $hasil1->num_rows;
 ?>
-<p>Total gallery : <?php echo $total_records; ?></p>
+<p>Total schedule : <?php echo $total_records; ?></p>
 
 <div class="container">
     <div class="row">
@@ -121,7 +115,7 @@ $total_records = $hasil1->num_rows;
             <ul class="pagination justify-content-end">
                 <?php
                 $jumlah_page = ceil($total_records / $limit);
-                $jumlah_number = 1; //jumlah halaman ke kanan dan kiri dari halaman yang aktif
+                $jumlah_number = 1;
                 $start_number = ($hlm > $jumlah_number) ? $hlm - $jumlah_number : 1;
                 $end_number = ($hlm < ($jumlah_page - $jumlah_number)) ? $hlm + $jumlah_number : $jumlah_page;
 
